@@ -1,0 +1,32 @@
+# render.yaml — Srivenkateshwara Dental Hospital Backend
+# Deploy to Render.com by connecting your GitHub repo
+services:
+  - type: web
+    name: svdh-backend-kamareddy
+    runtime: node
+    region: singapore   # closest to Kamareddy, Telangana
+    plan: free
+    buildCommand: npm install
+    startCommand: node server.js
+    healthCheckPath: /health
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: PORT
+        value: 10000
+      - key: JWT_SECRET
+        generateValue: true    # Render auto-generates a secure random value
+      - key: JWT_EXPIRES_IN
+        value: 7d
+      - key: DB_HOST
+        sync: false            # Set manually in Render dashboard
+      - key: DB_PORT
+        value: 3306
+      - key: DB_USER
+        sync: false
+      - key: DB_PASSWORD
+        sync: false
+      - key: DB_NAME
+        value: svdh_db
+      - key: CORS_ORIGIN
+        value: https://svdentalkamareddy.commmm
